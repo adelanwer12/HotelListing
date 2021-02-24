@@ -1,0 +1,23 @@
+2021-02-24 00:24:58.969 +02:00 [] Application is Starting
+2021-02-24 00:25:02.819 +02:00 [] Now listening on: "https://localhost:5001"
+2021-02-24 00:25:02.823 +02:00 [] Now listening on: "http://localhost:5000"
+2021-02-24 00:25:02.824 +02:00 [] Application started. Press Ctrl+C to shut down.
+2021-02-24 00:25:02.824 +02:00 [] Hosting environment: "Development"
+2021-02-24 00:25:02.824 +02:00 [] Content root path: "E:\\Projects\\angular dotnet\\HotelListing\\HotelListing"
+2021-02-24 00:25:05.474 +02:00 [] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-02-24 00:25:05.633 +02:00 [] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 161.9758ms
+2021-02-24 00:25:05.834 +02:00 [] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-02-24 00:25:05.975 +02:00 [] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 141.0728ms
+2021-02-24 00:25:30.915 +02:00 [] Application is shutting down...
+2021-02-24 00:25:47.090 +02:00 [] Application is Starting
+2021-02-24 00:25:49.500 +02:00 [] Now listening on: "https://localhost:5001"
+2021-02-24 00:25:49.505 +02:00 [] Now listening on: "http://localhost:5000"
+2021-02-24 00:25:49.506 +02:00 [] Application started. Press Ctrl+C to shut down.
+2021-02-24 00:25:49.506 +02:00 [] Hosting environment: "Development"
+2021-02-24 00:25:49.506 +02:00 [] Content root path: "E:\\Projects\\angular dotnet\\HotelListing\\HotelListing"
+2021-02-24 00:25:53.558 +02:00 [] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-02-24 00:25:53.558 +02:00 [] Request starting HTTP/2 GET https://localhost:5001/swagger/index.html - -
+2021-02-24 00:25:53.704 +02:00 [] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 148.7736ms
+2021-02-24 00:25:53.722 +02:00 [] Request finished HTTP/2 GET https://localhost:5001/swagger/index.html - - - 200 - text/html;charset=utf-8 167.3633ms
+2021-02-24 00:25:53.918 +02:00 [] Request starting HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - -
+2021-02-24 00:25:53.920 +02:00 [] Request finished HTTP/2 GET https://localhost:5001/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1.4840ms
