@@ -18,5 +18,6 @@ namespace HotelListing.Models
         public string ShortName { get; set; }
 
         public virtual IEnumerable<Hotel> Hotels { get; set; }
+        public virtual IEnumerable<Hostel> Hostels { get; set; }
     }
 }

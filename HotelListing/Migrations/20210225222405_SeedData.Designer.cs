@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelListing.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210224193102_SeedData")]
+    [Migration("20210225222405_SeedData")]
     partial class SeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,67 @@ namespace HotelListing.Migrations
                         });
                 });
 
+            modelBuilder.Entity("HotelListing.Models.Hostel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Hostels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("458a2291-e139-428b-bc96-f26e9d176cd5"),
+                            Address = "Cairo",
+                            CountryId = new Guid("6069422e-0248-44fd-b969-9626b14df3c2"),
+                            Name = "Hostel 1 Resort and Spa",
+                            Rating = 4.5
+                        },
+                        new
+                        {
+                            Id = new Guid("25981683-c283-465c-81f5-5243f156f788"),
+                            Address = "Cairo",
+                            CountryId = new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"),
+                            Name = "Hostel 1 Resort and Spa",
+                            Rating = 4.5
+                        },
+                        new
+                        {
+                            Id = new Guid("0b76fe3d-486d-4508-95d9-73ce5840bd5b"),
+                            Address = "Cairo",
+                            CountryId = new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"),
+                            Name = "Hostel 1 Resort and Spa",
+                            Rating = 4.5
+                        },
+                        new
+                        {
+                            Id = new Guid("723a9bfd-bfe9-4b44-bae3-340d5441aabe"),
+                            Address = "Cairo",
+                            CountryId = new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"),
+                            Name = "Hostel 1 Resort and Spa",
+                            Rating = 4.5
+                        });
+                });
+
             modelBuilder.Entity("HotelListing.Models.Hotel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -106,7 +167,7 @@ namespace HotelListing.Migrations
                             Id = new Guid("e42ab626-1e82-4c23-98e5-d39f078fadf9"),
                             Address = "Cairo",
                             CountryId = new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"),
-                            Name = "Sandals Resort and Spa",
+                            Name = "Sta Resort and Spa",
                             Rating = 4.5
                         },
                         new
@@ -114,7 +175,7 @@ namespace HotelListing.Migrations
                             Id = new Guid("68daa73b-7914-4742-92b3-a79873da4ecc"),
                             Address = "Cairo",
                             CountryId = new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"),
-                            Name = "Sandals Resort and Spa",
+                            Name = "Mgme Resort and Spa",
                             Rating = 4.5
                         },
                         new
@@ -122,20 +183,38 @@ namespace HotelListing.Migrations
                             Id = new Guid("b57b14e7-0622-41b3-8c91-80bd943736db"),
                             Address = "Cairo",
                             CountryId = new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"),
-                            Name = "Sandals Resort and Spa",
+                            Name = "New Rose Resort and Spa",
                             Rating = 4.5
                         });
                 });
 
-            modelBuilder.Entity("HotelListing.Models.Hotel", b =>
+            modelBuilder.Entity("HotelListing.Models.Hostel", b =>
                 {
                     b.HasOne("HotelListing.Models.Country", "Country")
-                        .WithMany()
+                        .WithMany("Hostels")
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("HotelListing.Models.Hotel", b =>
+                {
+                    b.HasOne("HotelListing.Models.Country", "Country")
+                        .WithMany("Hotels")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("HotelListing.Models.Country", b =>
+                {
+                    b.Navigation("Hostels");
+
+                    b.Navigation("Hotels");
                 });
 #pragma warning restore 612, 618
         }
