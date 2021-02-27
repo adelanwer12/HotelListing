@@ -8,12 +8,25 @@ namespace HotelListing.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ShortName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Hostels",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Rating = table.Column<double>(type: "float", nullable: false),
                     CountryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -22,6 +35,27 @@ namespace HotelListing.Migrations
                     table.PrimaryKey("PK_Hostels", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Hostels_Countries_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Hotels",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
+                    CountryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hotels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hotels_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "Id",
@@ -45,9 +79,9 @@ namespace HotelListing.Migrations
                 values: new object[,]
                 {
                     { new Guid("458a2291-e139-428b-bc96-f26e9d176cd5"), "Cairo", new Guid("6069422e-0248-44fd-b969-9626b14df3c2"), "Hostel 1 Resort and Spa", 4.5 },
-                    { new Guid("25981683-c283-465c-81f5-5243f156f788"), "Cairo", new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"), "Hostel 1 Resort and Spa", 4.5 },
-                    { new Guid("0b76fe3d-486d-4508-95d9-73ce5840bd5b"), "Cairo", new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"), "Hostel 1 Resort and Spa", 4.5 },
-                    { new Guid("723a9bfd-bfe9-4b44-bae3-340d5441aabe"), "Cairo", new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"), "Hostel 1 Resort and Spa", 4.5 }
+                    { new Guid("25981683-c283-465c-81f5-5243f156f788"), "Cairo", new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"), "Hostel 2 Resort and Spa", 4.5 },
+                    { new Guid("0b76fe3d-486d-4508-95d9-73ce5840bd5b"), "Cairo", new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"), "Hostel 3 Resort and Spa", 4.5 },
+                    { new Guid("723a9bfd-bfe9-4b44-bae3-340d5441aabe"), "Cairo", new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"), "Hostel 4 Resort and Spa", 4.5 }
                 });
 
             migrationBuilder.InsertData(
@@ -65,6 +99,11 @@ namespace HotelListing.Migrations
                 name: "IX_Hostels_CountryId",
                 table: "Hostels",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hotels_CountryId",
+                table: "Hotels",
+                column: "CountryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -72,45 +111,11 @@ namespace HotelListing.Migrations
             migrationBuilder.DropTable(
                 name: "Hostels");
 
-            migrationBuilder.DeleteData(
-                table: "Hotels",
-                keyColumn: "Id",
-                keyValue: new Guid("4353d1b0-4661-4217-a31b-fc4296896caa"));
+            migrationBuilder.DropTable(
+                name: "Hotels");
 
-            migrationBuilder.DeleteData(
-                table: "Hotels",
-                keyColumn: "Id",
-                keyValue: new Guid("68daa73b-7914-4742-92b3-a79873da4ecc"));
-
-            migrationBuilder.DeleteData(
-                table: "Hotels",
-                keyColumn: "Id",
-                keyValue: new Guid("b57b14e7-0622-41b3-8c91-80bd943736db"));
-
-            migrationBuilder.DeleteData(
-                table: "Hotels",
-                keyColumn: "Id",
-                keyValue: new Guid("e42ab626-1e82-4c23-98e5-d39f078fadf9"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("6069422e-0248-44fd-b969-9626b14df3c2"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"));
-
-            migrationBuilder.DeleteData(
-                table: "Countries",
-                keyColumn: "Id",
-                keyValue: new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"));
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

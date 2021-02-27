@@ -26,6 +26,7 @@ namespace HotelListing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -71,6 +72,7 @@ namespace HotelListing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
@@ -78,6 +80,7 @@ namespace HotelListing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -104,7 +107,7 @@ namespace HotelListing.Migrations
                             Id = new Guid("25981683-c283-465c-81f5-5243f156f788"),
                             Address = "Cairo",
                             CountryId = new Guid("d05aaafb-1ac1-4c94-8582-b97dbbe2836b"),
-                            Name = "Hostel 1 Resort and Spa",
+                            Name = "Hostel 2 Resort and Spa",
                             Rating = 4.5
                         },
                         new
@@ -112,7 +115,7 @@ namespace HotelListing.Migrations
                             Id = new Guid("0b76fe3d-486d-4508-95d9-73ce5840bd5b"),
                             Address = "Cairo",
                             CountryId = new Guid("b9923232-d27e-4af4-8768-6c58ad665d45"),
-                            Name = "Hostel 1 Resort and Spa",
+                            Name = "Hostel 3 Resort and Spa",
                             Rating = 4.5
                         },
                         new
@@ -120,7 +123,7 @@ namespace HotelListing.Migrations
                             Id = new Guid("723a9bfd-bfe9-4b44-bae3-340d5441aabe"),
                             Address = "Cairo",
                             CountryId = new Guid("71cad3bd-df3c-47d0-b621-3de868fcaa69"),
-                            Name = "Hostel 1 Resort and Spa",
+                            Name = "Hostel 4 Resort and Spa",
                             Rating = 4.5
                         });
                 });
@@ -132,6 +135,7 @@ namespace HotelListing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
@@ -139,6 +143,7 @@ namespace HotelListing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 

@@ -10,15 +10,9 @@ namespace HotelListing.Models
     public class Hostel
     {
         public Guid Id { get; set; }
-
-        [StringLength(50,MinimumLength = 5, ErrorMessage = "Hostel Name must be more than 6 Character and less than 50")]
         public string Name { get; set; }
-
-        [StringLength(150,MinimumLength = 5, ErrorMessage = "Hostel Name must be more than 6 Character and less than 150")]
         public string Address { get; set; }
-
         public double Rating { get; set; }
-
         public Country Country { get; set; }
         public Guid CountryId { get; set; }
     }

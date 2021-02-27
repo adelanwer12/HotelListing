@@ -13,7 +13,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelListing.DbContexts;
 using HotelListing.IRepository;
+using HotelListing.Models;
 using HotelListing.Repository;
+using HotelListing.ServicesExtensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelListing
@@ -33,20 +36,9 @@ namespace HotelListing
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelListing", Version = "v1" });
-            });
-            services.AddCors(opt =>
-            {
-                opt.AddPolicy("CorsPolicy",corsPolicy => corsPolicy.AllowAnyHeader().AllowAnyMethod().WithOrigins());
-            });
-            services.AddDbContext<DatabaseContext>(opt =>
-            {
-                opt.UseSqlServer(_config.GetConnectionString("Default"));
-            });
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddApplicationServices();
+            services.AddDataBaseServices(_config);
+            services.AddIdentityService(_config);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,12 +51,12 @@ namespace HotelListing
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HotelListing v1"));
-
-            app.UseHttpsRedirection();
             app.UseCors("CorsPolicy");
 
+            app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
