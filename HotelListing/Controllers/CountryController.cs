@@ -47,5 +47,32 @@ namespace HotelListing.Controllers
             var countryToReturn = _mapper.Map<CountryDto>(countryFromRepo);
             return Ok(countryToReturn);
         }
+
+        [HttpDelete("{id:Guid}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteCountry(Guid id)
+        {
+            try
+            {
+                var countryFromRepo = await _unitOfWork.Countries.GetAsync(c => c.Id == id, new List<string>{"Hotels"});
+                if (countryFromRepo == null)
+                {
+                    _logger.LogError($"Invalid Delete attempt in {nameof(DeleteCountry)}");
+                    return BadRequest("the country you tried to Delete not found");
+                }
+
+                await _unitOfWork.Countries.DeleteAsync(id);
+                await _unitOfWork.SaveAsync();
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Some thing went wrong in the {nameof(DeleteCountry)}");
+                return StatusCode(500, "Internal Server Error. Please Try Again later");
+            }
+
+        }
     }
 }

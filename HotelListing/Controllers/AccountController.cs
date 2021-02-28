@@ -73,5 +73,6 @@ namespace HotelListing.Controllers
 
             return Accepted(new {token = await _authManager.CreateToken(user)});
         }
+
     }
 }

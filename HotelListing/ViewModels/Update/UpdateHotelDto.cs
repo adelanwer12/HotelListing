@@ -5,7 +5,6 @@ namespace HotelListing.ViewModels.Update
 {
     public class UpdateHotelDto
     {
-        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50,MinimumLength = 5, ErrorMessage = "Hotel Name must be more than 6 Character and less than 50")]
